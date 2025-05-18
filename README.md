@@ -13,3 +13,13 @@ A modern Blazor WebAssembly app that demonstrates rich, interactive charts using
 - 🎨 Fully styled with the official Microsoft Blazor layout
 - 📱 Responsive 2-column chart layout with CSS Grid
 - 🦺 Supports Blazor Server or WebAssembly
+
+
+## 🚀 Getting Started
+
+### 1. **Clone the repo**
+
+```bash
+git clone https://github.com/patrikduch/blazor-echarts-example.git
+cd blazor-echarts-example
+```
