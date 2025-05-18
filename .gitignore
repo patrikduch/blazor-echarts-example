@@ -1,0 +1,36 @@
+## Ignore Visual Studio files
+.vs/
+*.user
+*.suo
+
+## Build results
+bin/
+obj/
+
+## User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+## ASP.NET/Blazor specific
+wwwroot/dist/
+wwwroot/node_modules/
+
+## Logs and database
+*.log
+*.sql
+*.sqlite
+
+## OS generated files
+.DS_Store
+Thumbs.db
+
+## Publish output
+publish/
+*.Publish.xml
+
+## Rider IDE
+.idea/
+
+## Node modules (if using npm/yarn for Blazor WebAssembly)
+node_modules/
