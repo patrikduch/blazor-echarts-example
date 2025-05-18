@@ -49,6 +49,10 @@
         <EChart ElementId="doughnutChart" ChartOptions="@doughnutChartOptions" />
     </div>
 
+    <!-- Treemap Chart -->
+    <div style="width: 600px; height: 400px; position: relative;">
+        <EChart ElementId="treemapChart" ChartOptions="@treemapChartOptions" />
+    </div>
 </div>
 
 @code {
@@ -122,7 +126,7 @@
             new {
                 name = "Visitors",
                 type = "line",
-                areaStyle = new { }, // makes it an area chart
+                areaStyle = new { },
                 data = new[] { 120, 132, 101, 134, 90, 230, 210 }
             }
         }
@@ -168,33 +172,33 @@
         xAxis = new { },
         yAxis = new { },
         series = new[] {
-        new {
-            symbolSize = 20,
-            data = new[] {
-                new[] { 10, 8 },
-                new[] { 15, 20 },
-                new[] { 20, 35 },
-                new[] { 25, 50 },
-                new[] { 30, 65 }
-            },
-            type = "scatter"
+            new {
+                symbolSize = 20,
+                data = new[] {
+                    new[] { 10, 8 },
+                    new[] { 15, 20 },
+                    new[] { 20, 35 },
+                    new[] { 25, 50 },
+                    new[] { 30, 65 }
+                },
+                type = "scatter"
+            }
         }
-    }
     };
 
     private object gaugeChartOptions = new
     {
         title = new { text = "CPU Usage" },
         series = new[] {
-        new {
-            type = "gauge",
-            progress = new { show = true },
-            detail = new { valueAnimation = true, formatter = "{value}%" },
-            data = new[] {
-                new { value = 67, name = "Usage" }
+            new {
+                type = "gauge",
+                progress = new { show = true },
+                detail = new { valueAnimation = true, formatter = "{value}%" },
+                data = new[] {
+                    new { value = 67, name = "Usage" }
+                }
             }
         }
-    }
     };
 
     private object candlestickChartOptions = new
@@ -204,17 +208,17 @@
         xAxis = new { type = "category", data = new[] { "Mon", "Tue", "Wed", "Thu", "Fri" } },
         yAxis = new { scale = true },
         series = new[] {
-        new {
-            type = "candlestick",
-            data = new object[] {
-                new object[] { 20.1, 22.5, 19.3, 21.4 },
-                new object[] { 21.4, 23.1, 21.0, 23.6 },
-                new object[] { 23.6, 22.8, 22.0, 24.2 },
-                new object[] { 22.8, 22.0, 21.2, 23.0 },
-                new object[] { 22.0, 23.5, 21.7, 23.9 }
+            new {
+                type = "candlestick",
+                data = new object[] {
+                    new object[] { 20.1, 22.5, 19.3, 21.4 },
+                    new object[] { 21.4, 23.1, 21.0, 23.6 },
+                    new object[] { 23.6, 22.8, 22.0, 24.2 },
+                    new object[] { 22.8, 22.0, 21.2, 23.0 },
+                    new object[] { 22.0, 23.5, 21.7, 23.9 }
+                }
             }
         }
-    }
     };
 
     private object doughnutChartOptions = new
@@ -223,27 +227,66 @@
         tooltip = new { trigger = "item" },
         legend = new { orient = "vertical", left = "left" },
         series = new[] {
-        new {
-            name = "Devices",
-            type = "pie",
-            radius = new[] { "40%", "70%" }, // inner and outer radius
-            avoidLabelOverlap = false,
-            label = new { show = false, position = "center" },
-            emphasis = new {
-                label = new {
-                    show = true,
-                    fontSize = "18",
-                    fontWeight = "bold"
+            new {
+                name = "Devices",
+                type = "pie",
+                radius = new[] { "40%", "70%" },
+                avoidLabelOverlap = false,
+                label = new { show = false, position = "center" },
+                emphasis = new {
+                    label = new {
+                        show = true,
+                        fontSize = "18",
+                        fontWeight = "bold"
+                    }
+                },
+                labelLine = new { show = false },
+                data = new[] {
+                    new { value = 1048, name = "Mobile" },
+                    new { value = 735, name = "Desktop" },
+                    new { value = 580, name = "Tablet" },
+                    new { value = 484, name = "Other" }
                 }
-            },
-            labelLine = new { show = false },
-            data = new[] {
-                new { value = 1048, name = "Mobile" },
-                new { value = 735, name = "Desktop" },
-                new { value = 580, name = "Tablet" },
-                new { value = 484, name = "Other" }
             }
         }
-    }
+    };
+
+    private object treemapChartOptions = new
+    {
+        title = new { text = "Treemap: Product Categories", left = "center" },
+        tooltip = new { },
+        series = new[] {
+            new {
+                name = "Product Categories",
+                type = "treemap",
+                roam = false,
+                nodeClick = false,
+                legend = new { show = false },
+                label = new { show = true },
+                data = new object[] {
+                    new {
+                        name = "Electronics",
+                        value = 35,
+                        children = new object[] {
+                            new { name = "Laptops", value = 20 },
+                            new { name = "Phones", value = 15 }
+                        }
+                    },
+                    new {
+                        name = "Furniture",
+                        value = 25,
+                        children = new object[] {
+                            new { name = "Chairs", value = 10 },
+                            new { name = "Desks", value = 15 }
+                        }
+                    },
+                    new {
+                        name = "Books",
+                        value = 40
+                    }
+                }
+            }
+        }
     };
 }
+
