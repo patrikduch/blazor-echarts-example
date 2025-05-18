@@ -1,58 +1,143 @@
 ﻿@page "/"
-@inject IJSRuntime JS
 @rendermode InteractiveServer
 
 <h3>ECharts Example</h3>
 
-<div style="position: relative; width: 600px; height: 400px;">
-    @if (isLoading)
-    {
-        <div style="
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255,255,255,0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;">
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-                <div class="spinner"></div>
-                <span style="font-style: italic; color: #555;">Loading chart...</span>
-            </div>
-        </div>
-    }
+<div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+    <!-- Bar Chart -->
+    <div style="width: 600px; height: 400px; position: relative;">
+        <EChart ElementId="barChart" ChartOptions="@barChartOptions" />
+    </div>
 
-    <div id="mainChart" style="width: 100%; height: 100%;"></div>
+    <!-- Pie Chart -->
+    <div style="width: 600px; height: 400px; position: relative;">
+        <EChart ElementId="pieChart" ChartOptions="@pieChartOptions" />
+    </div>
+
+    <!-- Line Chart -->
+    <div style="width: 600px; height: 400px; position: relative;">
+        <EChart ElementId="lineChart" ChartOptions="@lineChartOptions" />
+    </div>
+
+    <!-- Area Chart -->
+    <div style="width: 600px; height: 400px; position: relative;">
+        <EChart ElementId="areaChart" ChartOptions="@areaChartOptions" />
+    </div>
+
+    <!-- Radar Chart -->
+    <div style="width: 600px; height: 400px; position: relative;">
+        <EChart ElementId="radarChart" ChartOptions="@radarChartOptions" />
+    </div>
 </div>
 
 @code {
-    private bool isLoading = true;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    private object barChartOptions = new
     {
-        if (firstRender)
-        {
-            var chartOptions = new
-            {
-                title = new { text = "ECharts Intro Chart" },
-                tooltip = new { },
-                legend = new { data = new[] { "Sales" } },
-                xAxis = new { data = new[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" } },
-                yAxis = new { },
-                series = new[] {
-                    new {
-                        name = "Sales",
-                        type = "bar",
-                        data = new[] { 5, 20, 36, 10, 10, 20, 30 }
+        title = new { text = "Weekly Sales" },
+        tooltip = new { },
+        legend = new { data = new[] { "Sales" } },
+        xAxis = new { data = new[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" } },
+        yAxis = new { },
+        series = new[] {
+            new {
+                name = "Sales",
+                type = "bar",
+                data = new[] { 5, 20, 36, 10, 10, 20, 30 }
+            }
+        }
+    };
+
+    private object pieChartOptions = new
+    {
+        title = new { text = "Market Share", left = "center" },
+        tooltip = new { trigger = "item" },
+        legend = new { orient = "vertical", left = "left" },
+        series = new[] {
+            new {
+                name = "Sources",
+                type = "pie",
+                radius = "50%",
+                data = new[] {
+                    new { value = 1048, name = "Search Engine" },
+                    new { value = 735, name = "Direct" },
+                    new { value = 580, name = "Email" },
+                    new { value = 484, name = "Ads" },
+                    new { value = 300, name = "Social" }
+                },
+                emphasis = new {
+                    itemStyle = new {
+                        shadowBlur = 10,
+                        shadowOffsetX = 0,
+                        shadowColor = "rgba(0, 0, 0, 0.5)"
                     }
                 }
-            };
-
-            await JS.InvokeVoidAsync("echartsInterop.initChart", "mainChart", chartOptions);
-            isLoading = false;
-            StateHasChanged(); // triggers re-render to hide overlay
+            }
         }
-    }
+    };
+
+    private object lineChartOptions = new
+    {
+        title = new { text = "Monthly Revenue" },
+        tooltip = new { trigger = "axis" },
+        xAxis = new { type = "category", boundaryGap = false, data = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul" } },
+        yAxis = new { type = "value" },
+        series = new[] {
+            new {
+                name = "Revenue",
+                type = "line",
+                stack = "Total",
+                data = new[] { 820, 932, 901, 934, 1290, 1330, 1320 }
+            }
+        }
+    };
+
+    private object areaChartOptions = new
+    {
+        title = new { text = "Traffic Flow (Area Chart)" },
+        tooltip = new { trigger = "axis" },
+        xAxis = new { type = "category", boundaryGap = false, data = new[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" } },
+        yAxis = new { type = "value" },
+        series = new[] {
+            new {
+                name = "Visitors",
+                type = "line",
+                areaStyle = new { }, // makes it an area chart
+                data = new[] { 120, 132, 101, 134, 90, 230, 210 }
+            }
+        }
+    };
+
+    private object radarChartOptions = new
+    {
+        title = new { text = "Skill Radar" },
+        tooltip = new { },
+        legend = new { data = new[] { "Allocated Budget", "Actual Spending" } },
+        radar = new
+        {
+            indicator = new[] {
+                new { name = "Design", max = 6500 },
+                new { name = "Development", max = 16000 },
+                new { name = "Marketing", max = 30000 },
+                new { name = "Sales", max = 38000 },
+                new { name = "Support", max = 52000 },
+                new { name = "Management", max = 25000 }
+            }
+        },
+        series = new[] {
+            new {
+                name = "Budget vs spending",
+                type = "radar",
+                data = new[] {
+                    new {
+                        value = new[] { 4300, 10000, 28000, 35000, 50000, 19000 },
+                        name = "Allocated Budget"
+                    },
+                    new {
+                        value = new[] { 5000, 14000, 28000, 31000, 42000, 21000 },
+                        name = "Actual Spending"
+                    }
+                }
+            }
+        }
+    };
 }

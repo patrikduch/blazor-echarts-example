@@ -1,0 +1,19 @@
+﻿@inject IJSRuntime JS
+
+<div id="@ElementId" style="width: 100%; height: 100%;"></div>
+
+@code {
+    [Parameter]
+    public string ElementId { get; set; } = "mainChart";
+
+    [Parameter]
+    public object ChartOptions { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("echartsInterop.initChart", ElementId, ChartOptions);
+        }
+    }
+}
