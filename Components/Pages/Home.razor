@@ -28,6 +28,17 @@
     <div style="width: 600px; height: 400px; position: relative;">
         <EChart ElementId="radarChart" ChartOptions="@radarChartOptions" />
     </div>
+
+    <!-- Scatter Chart -->
+    <div style="width: 600px; height: 400px; position: relative;">
+        <EChart ElementId="scatterChart" ChartOptions="@scatterChartOptions" />
+    </div>
+
+    <!-- Gauge Chart -->
+    <div style="width: 600px; height: 400px; position: relative;">
+        <EChart ElementId="gaugeChart" ChartOptions="@gaugeChartOptions" />
+    </div>
+
 </div>
 
 @code {
@@ -139,5 +150,40 @@
                 }
             }
         }
+    };
+
+    private object scatterChartOptions = new
+    {
+        title = new { text = "Scatter Plot" },
+        xAxis = new { },
+        yAxis = new { },
+        series = new[] {
+        new {
+            symbolSize = 20,
+            data = new[] {
+                new[] { 10, 8 },
+                new[] { 15, 20 },
+                new[] { 20, 35 },
+                new[] { 25, 50 },
+                new[] { 30, 65 }
+            },
+            type = "scatter"
+        }
+    }
+    };
+
+    private object gaugeChartOptions = new
+    {
+        title = new { text = "CPU Usage" },
+        series = new[] {
+        new {
+            type = "gauge",
+            progress = new { show = true },
+            detail = new { valueAnimation = true, formatter = "{value}%" },
+            data = new[] {
+                new { value = 67, name = "Usage" }
+            }
+        }
+    }
     };
 }
