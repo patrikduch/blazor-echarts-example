@@ -44,6 +44,11 @@
         <EChart ElementId="candlestickChart" ChartOptions="@candlestickChartOptions" />
     </div>
 
+    <!-- Doughnut Chart -->
+    <div style="width: 600px; height: 400px; position: relative;">
+        <EChart ElementId="doughnutChart" ChartOptions="@doughnutChartOptions" />
+    </div>
+
 </div>
 
 @code {
@@ -207,6 +212,36 @@
                 new object[] { 23.6, 22.8, 22.0, 24.2 },
                 new object[] { 22.8, 22.0, 21.2, 23.0 },
                 new object[] { 22.0, 23.5, 21.7, 23.9 }
+            }
+        }
+    }
+    };
+
+    private object doughnutChartOptions = new
+    {
+        title = new { text = "Device Usage", left = "center", top = "top" },
+        tooltip = new { trigger = "item" },
+        legend = new { orient = "vertical", left = "left" },
+        series = new[] {
+        new {
+            name = "Devices",
+            type = "pie",
+            radius = new[] { "40%", "70%" }, // inner and outer radius
+            avoidLabelOverlap = false,
+            label = new { show = false, position = "center" },
+            emphasis = new {
+                label = new {
+                    show = true,
+                    fontSize = "18",
+                    fontWeight = "bold"
+                }
+            },
+            labelLine = new { show = false },
+            data = new[] {
+                new { value = 1048, name = "Mobile" },
+                new { value = 735, name = "Desktop" },
+                new { value = 580, name = "Tablet" },
+                new { value = 484, name = "Other" }
             }
         }
     }
