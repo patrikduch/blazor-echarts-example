@@ -3,58 +3,53 @@
 
 <h3>ECharts Example</h3>
 
-<div style="display: flex; flex-wrap: wrap; gap: 2rem;">
-    <!-- Bar Chart -->
-    <div style="width: 600px; height: 400px; position: relative;">
+<div style="
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+">
+    <!-- Keep all your chart blocks as-is -->
+    <div style="height: 400px; position: relative;">
         <EChart ElementId="barChart" ChartOptions="@barChartOptions" />
     </div>
 
-    <!-- Pie Chart -->
-    <div style="width: 600px; height: 400px; position: relative;">
+    <div style="height: 400px; position: relative;">
         <EChart ElementId="pieChart" ChartOptions="@pieChartOptions" />
     </div>
 
-    <!-- Line Chart -->
-    <div style="width: 600px; height: 400px; position: relative;">
+    <div style="height: 400px; position: relative;">
         <EChart ElementId="lineChart" ChartOptions="@lineChartOptions" />
     </div>
 
-    <!-- Area Chart -->
-    <div style="width: 600px; height: 400px; position: relative;">
+    <div style="height: 400px; position: relative;">
         <EChart ElementId="areaChart" ChartOptions="@areaChartOptions" />
     </div>
 
-    <!-- Radar Chart -->
-    <div style="width: 600px; height: 400px; position: relative;">
+    <div style="height: 400px; position: relative;">
         <EChart ElementId="radarChart" ChartOptions="@radarChartOptions" />
     </div>
 
-    <!-- Scatter Chart -->
-    <div style="width: 600px; height: 400px; position: relative;">
+    <div style="height: 400px; position: relative;">
         <EChart ElementId="scatterChart" ChartOptions="@scatterChartOptions" />
     </div>
 
-    <!-- Gauge Chart -->
-    <div style="width: 600px; height: 400px; position: relative;">
+    <div style="height: 400px; position: relative;">
         <EChart ElementId="gaugeChart" ChartOptions="@gaugeChartOptions" />
     </div>
 
-    <!-- Candlestick Chart -->
-    <div style="width: 600px; height: 400px; position: relative;">
+    <div style="height: 400px; position: relative;">
         <EChart ElementId="candlestickChart" ChartOptions="@candlestickChartOptions" />
     </div>
 
-    <!-- Doughnut Chart -->
-    <div style="width: 600px; height: 400px; position: relative;">
+    <div style="height: 400px; position: relative;">
         <EChart ElementId="doughnutChart" ChartOptions="@doughnutChartOptions" />
     </div>
 
-    <!-- Treemap Chart -->
-    <div style="width: 600px; height: 400px; position: relative;">
+    <div style="height: 400px; position: relative;">
         <EChart ElementId="treemapChart" ChartOptions="@treemapChartOptions" />
     </div>
 </div>
-
 @code {
     private object barChartOptions = new
     {
