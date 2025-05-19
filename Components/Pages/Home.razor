@@ -99,17 +99,47 @@
     {
         title = new { text = "Monthly Revenue" },
         tooltip = new { trigger = "axis" },
-        xAxis = new { type = "category", boundaryGap = false, data = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul" } },
+        xAxis = new
+        {
+            type = "category",
+            boundaryGap = false,
+            data = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul" }
+        },
         yAxis = new { type = "value" },
         series = new[] {
-            new {
-                name = "Revenue",
-                type = "line",
-                stack = "Total",
-                data = new[] { 820, 932, 901, 934, 1290, 1330, 1320 }
+        new {
+            name = "Revenue",
+            type = "line",
+            stack = "Total",
+            data = new[] { 820, 932, 901, 934, 1290, 1330, 1320 },
+            markPoint = new {
+                symbol = "circle",
+                symbolSize = 12,
+                itemStyle = new {
+                    color = "#007BFF",         // Filled color (blue)
+                    borderColor = "#ffffff",  // Optional border for visibility
+                    borderWidth = 2
+                },
+                label = new {
+                    show = true,
+                    formatter = "1290",
+                    color = "#333333",
+                    fontSize = 12,
+                    fontWeight = "bold",
+                    position = "top"
+                },
+                data = new[] {
+                    new {
+                        name = "Target",
+                        coord = new object[] { "May", 1290 },
+                        value = 1290
+                    }
+                }
             }
         }
+    }
     };
+
 
     private object areaChartOptions = new
     {
