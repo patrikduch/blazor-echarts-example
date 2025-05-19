@@ -52,22 +52,6 @@
     </div>
 </div>
 @code {
-    private object barChartOptions = new
-    {
-        title = new { text = "Weekly Sales" },
-        tooltip = new { },
-        legend = new { data = new[] { "Sales" } },
-        xAxis = new { data = new[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" } },
-        yAxis = new { },
-        series = new[] {
-            new {
-                name = "Sales",
-                type = "bar",
-                data = new[] { 5, 20, 36, 10, 10, 20, 30 }
-            }
-        }
-    };
-
     private object pieChartOptions = new
     {
         title = new { text = "Market Share", left = "center" },
