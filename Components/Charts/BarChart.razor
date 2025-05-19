@@ -1,0 +1,20 @@
+﻿@inject IJSRuntime JS
+<EChart ElementId="barChart" ChartOptions="@ChartOptions" />
+
+@code {
+    private object ChartOptions = new
+    {
+        title = new { text = "Weekly Sales" },
+        tooltip = new { },
+        legend = new { data = new[] { "Sales" } },
+        xAxis = new { data = new[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" } },
+        yAxis = new { },
+        series = new[] {
+            new {
+                name = "Sales",
+                type = "bar",
+                data = new[] { 5, 20, 36, 10, 10, 20, 30 }
+            }
+        }
+    };
+}

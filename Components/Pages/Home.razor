@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using BlazorEchartsExample.Components.Charts
 @rendermode InteractiveServer
 
 <h3>ECharts Example</h3>
@@ -9,9 +10,9 @@
     gap: 2rem;
     justify-content: center;
 ">
-    <!-- Keep all your chart blocks as-is -->
-    <div style="height: 400px; position: relative;">
-        <EChart ElementId="barChart" ChartOptions="@barChartOptions" />
+
+    <div style="height: 400px;">
+        <BarChart />
     </div>
 
     <div style="height: 400px; position: relative;">
