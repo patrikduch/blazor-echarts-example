@@ -20,4 +20,4 @@ COPY --from=build /app/publish .
 EXPOSE 80
 ENV ASPNETCORE_URLS=http://+:80
 
-ENTRYPOINT ["dotnet", "BlazorWithJs.dll"]
+ENTRYPOINT ["dotnet", "BlazorEchartsExample.dll"]
